@@ -1,0 +1,23 @@
+{
+  "name": "webassembly-seed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node serve.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fyllekanin/webassembly-seed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fyllekanin/webassembly-seed/issues"
+  },
+  "homepage": "https://github.com/fyllekanin/webassembly-seed#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
