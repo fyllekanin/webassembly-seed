@@ -1,15 +1,18 @@
 const MODULE_CACHE = {};
+const memory = new WebAssembly.Memory({
+    initial: 256,
+    maximum: 256
+});
+const heap = new Uint8Array(memory.buffer);
 const importObj = {
     env: {
         memoryBase: 0,
         tableBase: 0,
-        memory: new WebAssembly.Memory({
-            initial: 256,
-        }),
+        memory: memory,
         table: new WebAssembly.Table({
             initial: 0,
             element: 'anyfunc',
-        }),
+        })
     }
   };
 
@@ -31,6 +34,10 @@ export class WebAssemblyUtils {
 
         MODULE_CACHE[name] = instance.exports;
         return instance.exports;
+    }
+
+    static getHeap() {
+        return heap;
     }
 
     static getFileName(path) {

@@ -10,5 +10,20 @@ async function runAdd() {
     console.log(addWasm.add(2, 3));
 }
 
+async function runReverse(array) {
+    for (let i = 0; i < array.length; ++i) {
+        WebAssemblyUtils.getHeap()[i] = array[i];
+    }
+    const reverseWasm = await WebAssemblyUtils.getWasmExports('./assets/webassembly/reverse.wasm');
+    reverseWasm.reverse(0, array.length);
+
+    const result = [];
+    for (let i = 0; i < array.length; ++i) {
+        result.push(WebAssemblyUtils.getHeap()[i]);
+    }
+    console.log(array, 'is now reverse to', result);
+}
+
 runDoubler();
 runAdd();
+runReverse([1,2,3]);

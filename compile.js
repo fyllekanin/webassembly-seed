@@ -11,7 +11,8 @@ const { exec } = require('child_process');
  const wasmAssetFolder = 'src/assets/webassembly/';
  const files = [
      'add.c',
-     'doubler.c'
+     'doubler.c',
+     'reverse.c'
  ];
 
 function doesFileExist(file) {
