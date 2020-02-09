@@ -12,7 +12,11 @@ const importObj = {
         table: new WebAssembly.Table({
             initial: 0,
             element: 'anyfunc',
-        })
+        }),
+
+        'JSMethod': function(val) {
+            alert(`Wasm called this with value ${val}`);
+        }
     }
   };
 
@@ -30,7 +34,7 @@ export class WebAssemblyUtils {
         }
 
         const fetchPromise = fetch(path);
-        const { module, instance } = await WebAssembly.instantiateStreaming(fetchPromise, importObj);
+        const { instance } = await WebAssembly.instantiateStreaming(fetchPromise, importObj);
 
         MODULE_CACHE[name] = instance.exports;
         return instance.exports;

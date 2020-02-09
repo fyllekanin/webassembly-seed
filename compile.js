@@ -12,7 +12,8 @@ const { exec } = require('child_process');
  const files = [
      'add.c',
      'doubler.c',
-     'reverse.c'
+     'reverse.c',
+     'passOn.c'
  ];
 
 function doesFileExist(file) {

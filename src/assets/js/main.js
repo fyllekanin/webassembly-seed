@@ -24,6 +24,12 @@ async function runReverse(array) {
     console.log(array, 'is now reverse to', result);
 }
 
+async function runPassOn(val) {
+    const passOn = await WebAssemblyUtils.getWasmExports('./assets/webassembly/passOn.wasm');
+    console.log(passOn.callJS(val));
+}
+
 runDoubler();
 runAdd();
 runReverse([1,2,3]);
+runPassOn(50);
