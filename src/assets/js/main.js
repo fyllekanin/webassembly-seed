@@ -1,13 +1,13 @@
 import { WebAssemblyUtils } from './common/wasm-loader.module.js';
 
-async function runDoubler() {
+async function runDoubler(value) {
     const doublerWasm = await WebAssemblyUtils.getWasmExports('./assets/webassembly/doubler.wasm');
-    console.log(doublerWasm.doubler(5));
+    console.log(`Double ${value} is equal to: `, doublerWasm.doubler(value));
 }
 
-async function runAdd() {
+async function runAdd(first, second) {
     const addWasm = await WebAssemblyUtils.getWasmExports('./assets/webassembly/add.wasm');
-    console.log(addWasm.add(2, 3));
+    console.log(`Adding ${first} and ${second} is equal to: `, addWasm.add(first, second));
 }
 
 async function runReverse(array) {
@@ -21,7 +21,7 @@ async function runReverse(array) {
     for (let i = 0; i < array.length; ++i) {
         result.push(WebAssemblyUtils.getHeap()[i]);
     }
-    console.log(array, 'is now reverse to', result);
+    console.log(array, 'is now reversed to', result);
 }
 
 async function runPassOn(val) {
@@ -29,7 +29,7 @@ async function runPassOn(val) {
     console.log(passOn.callJS(val));
 }
 
-runDoubler();
-runAdd();
-runReverse([1,2,3]);
-runPassOn(50);
+window.runReverse = arr => runReverse(arr);
+window.runAdd = (first, second) => runAdd(first, second);
+window.runDoubler = value => runDoubler(value);
+window.runPassOn = value => runPassOn(value);
